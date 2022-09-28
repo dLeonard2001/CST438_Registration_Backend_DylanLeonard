@@ -37,19 +37,18 @@ public class StudentController {
 	}
 	
 	@PutMapping("/student/{id}")
-	public void updateStatus(@PathVariable int id, @RequestParam("status_code") int status_code, 
-			@RequestParam("msg") String status_message) {
+	public void updateStatus(@PathVariable int id) {
 		Student student = studentRepository.findById(id).get();
 		
-		if(student.getStatusCode() == 0 && status_code != 0) {
+		if(student.getStatusCode() == 0 ) {
 			System.out.println("student has no hold, applying a hold...");
-			student.setStatusCode(status_code);
-			student.setStatus(status_message);
+			 student.setStatusCode(1);
+			// student.setStatus(status_message);
 			student = studentRepository.save(student);
-		}else if(student.getStatusCode() != 0 && status_code == 0) {
+		}else if(student.getStatusCode() != 0) {
 			System.out.println("Student has a hold, releasing the hold...");
-			student.setStatusCode(status_code);
-			student.setStatus(status_message);
+			 student.setStatusCode(0);
+			// student.setStatus(status_message);
 			student = studentRepository.save(student);
 		}
 	}
