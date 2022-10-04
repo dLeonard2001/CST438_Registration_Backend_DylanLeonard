@@ -91,7 +91,7 @@ class JunitTestStudentController {
 		
 		response = mvc.perform(
 				MockMvcRequestBuilders
-			      .put("/student/" + test_student_id)
+			      .put("/student/" + test_student_id + "?status_code=1&msg=Student has not paid ")
 			      .content(asJsonString(student))
 			      .contentType(MediaType.APPLICATION_JSON)
 			      .accept(MediaType.APPLICATION_JSON))
@@ -126,7 +126,7 @@ class JunitTestStudentController {
 		
 		response = mvc.perform(
 				MockMvcRequestBuilders
-			      .put("/student/" + test_student_id)
+			      .put("/student/" + test_student_id + "?status_code=0&msg=No hold")
 			      .content(asJsonString(student))
 			      .contentType(MediaType.APPLICATION_JSON)
 			      .accept(MediaType.APPLICATION_JSON))
