@@ -26,6 +26,7 @@ public class StudentController {
 
 	@PostMapping("/student")
 	public Student addStudent(@RequestBody Student newStudent) {
+		System.out.println(newStudent.getEmail());
 		Student student = studentRepository.findByEmail(newStudent.getEmail());
 		if(student == null) {
 			System.out.println("adding new student...");

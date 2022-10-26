@@ -48,7 +48,7 @@ public class ScheduleController {
 	 */
 	@GetMapping("/schedule")
 	public ScheduleDTO getSchedule( @RequestParam("year") int year, @RequestParam("semester") String semester ) {
-		System.out.println("/schedule called.");
+		System.out.println("/SCHEDULE IS CALLED");
 		String student_email = "test@csumb.edu";   // student's email 
 		
 		Student student = studentRepository.findByEmail(student_email);
@@ -87,6 +87,7 @@ public class ScheduleController {
 			enrollment.setSemester(course.getSemester());
 			Enrollment savedEnrollment = enrollmentRepository.save(enrollment);
 			
+			System.out.println("adding course... " + courseDTO.course_id);
 			gradebookService.enrollStudent(student_email, student.getName(), course.getCourse_id());
 			
 			ScheduleDTO.CourseDTO result = createCourseDTO(savedEnrollment);
